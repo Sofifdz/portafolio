@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sofia Fernández | Portafolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #F9FAFB;
+      --text: #1F2933;
+      --muted: #6B7280;
+      --accent: #2563EB;
+      --card: #FFFFFF;
+      --line: #D1D5DB;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(249,250,251,0.9);
+      backdrop-filter: blur(10px);
+      padding: 15px 10%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* HERO */
+    header.hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+      padding: 90px 10%;
+    }
+
+    h1 { font-size: 3rem; }
+
+    header p {
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 15px;
+    }
+
+    .hero-img img {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid white;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transition: 0.4s;
+    }
+
+    .hero-img img:hover { transform: scale(1.05); }
+
+    /* BOTONES */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #16a34a;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: 0.3s;
+      float: right;
+
+      
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(22,163,74,0.3);
+    }
+
+    /* SECCIONES */
+    section {
+      padding: 80px 10%;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    section.visible {
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    section:nth-child(even) { background: #F3F4F6; }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    /* SOBRE MI */
+    .about p {
+      max-width: 900px;
+      color: var(--muted);
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin-top: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .timeline-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-content span {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .timeline-content p {
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    /* TABS PROYECTOS */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      border: none;
+      background: #E5E7EB;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .projects {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .projects.active {
+      display: grid;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .icons {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      header.hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <strong>Sofia Fernández</strong>
+  <div>
+    <a href="#about">Sobre mí</a>
+    <a href="#timeline">Trayectoria</a>
+    <a href="#projects">Proyectos</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div>
+    <h1>Sofia Fernández</h1>
+    <p>
+      Ingeniera en Sistemas Computacionales con enfoque en el desarrollo de aplicaciones móviles,
+      sistemas de gestión y soluciones tecnológicas orientadas a procesos reales de negocio.
+    </p>
+    <a class="btn-primary" href="https://github.com/Sofifdz" target="_blank">
+      <i class="fab fa-github"></i> Ver GitHub
+    </a>
+  </div>
+  <div class="hero-img">
+    <img src="assets/img/perfil.jpg" alt="Foto de Sofía Fernández">
+  </div>
+</header>
+
+<section id="about" class="about">
+  <h2>Sobre mí</h2>
+  <p>
+    Ingeniera en Sistemas Computacionales egresada de la Universidad Autónoma de Tamaulipas.
+    Mi formación se ha enfocado tanto en el desarrollo de software como en el análisis y
+    mejora de procesos mediante soluciones tecnológicas.
+  </p>
+  <p>
+    He participado en proyectos reales relacionados con la gestión de ventas, inventarios,
+    pedidos y control administrativo para pequeños negocios, utilizando Flutter y Firebase.
+    Además, he desarrollado proyectos académicos en videojuegos, robótica y procesamiento
+    de lenguaje natural.
+  </p>
+</section>
+
+<section id="timeline">
+  <h2>Trayectoria</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>Becaria en Tecnologías de la Información</h4>
+        <span>Despachos Aduanales Castañeda</span>
+        <p>Soporte técnico, redes, instalación de software y asistencia remota.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>Aplicación móvil para panadería</h4>
+        <span>Proyecto real · Flutter & Firebase</span>
+        <p>Desarrollo de sistema de ventas, inventarios y pedidos en uso operativo.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h4>Proyectos académicos</h4>
+        <span>Universidad Autónoma de Tamaulipas</span>
+        <p>Unity, robótica y traductor de lenguaje natural a SQL.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Proyectos</h2>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('p1', this)">Ventas</button>
+    <button class="tab-btn" onclick="showTab('p2', this)">Juego</button>
+    <button class="tab-btn" onclick="showTab('p3', this)">Robótica</button>
+    <button class="tab-btn" onclick="showTab('p4', this)">SQL</button>
+  </div>
+
+  <div id="p1" class="projects active">
+    <div class="card">
+      <h3>Sistema de ventas para panadería</h3>
+      <p>App móvil para ventas, inventario y pedidos desarrollada con Flutter y Firebase.</p>
+      <div class="icons">📱 Flutter · ☁️ Firebase</div>
+      <a class="btn-primary" href="https://github.com/Sofifdz/proyecto_panaderia" target="_blank">
+        <i class="fab fa-github"></i> Ver proyecto
+      </a>
+    </div>
+  </div>
+
+  <div id="p2" class="projects">
+    <div class="card">
+      <h3>Juego de granja</h3>
+      <p>Videojuego desarrollado en Unity que demuestra lógica, mecánicas y programación en C#.</p>
+      <div class="icons">🎮 Unity · C#</div>
+      <a class="btn-primary" href="https://github.com/Sofifdz/Juego_granja" target="_blank">
+        <i class="fab fa-github"></i> Ver proyecto
+      </a>
+    </div>
+  </div>
+
+  <div id="p3" class="projects">
+    <div class="card">
+      <h3>Circuito de gestos</h3>
+      <p>Proyecto de automatización con sensores enfocado en la detección de gestos físicos.</p>
+      <div class="icons">🤖 Robótica · Sensores</div>
+      <a class="btn-primary" href="https://github.com/Sofifdz/Automatizacion-Y-Robotica/tree/main/Circuito_Gestos" target="_blank">
+        <i class="fab fa-github"></i> Ver proyecto
+      </a>
+    </div>
+  </div>
+
+  <div id="p4" class="projects">
+    <div class="card">
+      <h3>Traductor de lenguaje natural a SQL</h3>
+      <p>Herramienta en Python que convierte consultas en español a sentencias SQL.</p>
+      <div class="icons">🧠 Python · SQL</div>
+      <a class="btn-primary" href="https://github.com/Sofifdz/ProyectoSQLTraductor" target="_blank">
+        <i class="fab fa-github"></i> Ver proyecto
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 · Sofi Fernández
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.projects').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
+</body>
+</html>
